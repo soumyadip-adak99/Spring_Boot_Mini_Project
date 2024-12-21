@@ -10,8 +10,6 @@
 
 ## Important Notes
 
-To get a local copy of this project up and running on your machine, follow these simple steps:
-
 ### 1. **Lombok Dependency for Maven**
 
 Lombok is a popular Java library that helps reduce boilerplate code by automatically generating common methods such as getters, setters, constructors, `toString()`, `equals()`, `hashCode()`, and more. By using annotations, Lombok generates these methods at compile-time, allowing developers to focus more on business logic rather than repetitive code.
@@ -33,6 +31,8 @@ Lombok is a popular Java library that helps reduce boilerplate code by automatic
 
 #### Lombok Maven Dependency:
 
+To add Lombok to your Maven project, include the following dependency in your `pom.xml`:
+
 ```xml
 <dependency>
   <groupId>org.projectlombok</groupId>
@@ -44,7 +44,7 @@ Lombok is a popular Java library that helps reduce boilerplate code by automatic
 
 ### 2. **MongoDB Database Connection Dependency for Maven**
 
-To connect to MongoDB from Spring Boot, include the following dependency:
+To connect to MongoDB from Spring Boot, include the following dependency in your `pom.xml`:
 
 ```xml
 <dependency>
@@ -55,10 +55,16 @@ To connect to MongoDB from Spring Boot, include the following dependency:
 
 ### 3. **React API Handling Module Installation**
 
-To manage API requests from your React frontend, you need to install Axios:
+To manage API requests from your React frontend, you need to install **Axios**:
 
 ```bash
 npm install axios
+```
+
+Then, import Axios in your React components (JSX files):
+
+```javascript
+import axios from "axios";
 ```
 
 ## 🔗 Links
