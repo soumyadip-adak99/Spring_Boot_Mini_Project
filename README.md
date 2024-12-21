@@ -71,5 +71,5 @@ import axios from "axios";
 
 - [React Documentation](https://reactjs.org/)
 - [Spring Boot Documentation](https://spring.io/projects/spring-boot)
-- [Spring Boot Anotation Details](https://docs.google.com/document/d/1jQ5SCUu2qKxffj6JgeH7rIPFUwGXJ9ljQbc6hfDnOyg/edit?usp=sharing);
+- [Spring Boot Anotation Details](https://docs.google.com/document/d/1jQ5SCUu2qKxffj6JgeH7rIPFUwGXJ9ljQbc6hfDnOyg/edit?usp=sharing)
 - [MongoDB Documentation](https://www.mongodb.com/docs/)
