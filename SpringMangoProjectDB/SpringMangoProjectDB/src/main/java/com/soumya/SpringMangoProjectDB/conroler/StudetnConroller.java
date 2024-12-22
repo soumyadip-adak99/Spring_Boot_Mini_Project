@@ -14,8 +14,8 @@ public class StudetnConroller {
     @Autowired
     private StudentService studentService;
 
-    // Save student details
-    @PostMapping(value = "/save")
+    // Save or update student details
+    @PostMapping("/save")
     public String saveStudent(@RequestBody Student student) {
         studentService.saveOrUpdate(student);
         return "Student saved successfully!";
@@ -35,10 +35,9 @@ public class StudetnConroller {
 
     // Update student details
     @PutMapping("/edit/{id}")
-    public Student editStudent(@PathVariable(name = "id") String id, @RequestBody Student student) {
-        student.setId(id);
-        studentService.saveOrUpdate(student);
-        return student;
+    public String editStudent(@PathVariable(name = "id") String id, @RequestBody Student updatedStudent) {
+        Student student = studentService.updateStudent(id, updatedStudent);
+        return "Student updated successfully!";
     }
 
     // Delete student details

@@ -42,7 +42,7 @@ function Student() {
         setName(student.name);
         setAddress(student.address);
         setPhone(student.phone);
-        setId(student._id);
+        setId(student.id);
     }
 
     async function deleteStudent(studentId) {
@@ -156,7 +156,7 @@ function Student() {
                     </thead>
                     <tbody>
                         {students.map((student) => (
-                            <tr key={student._id} className="table-light">
+                            <tr key={student.id} className="table-light">
                                 <td>{student.name}</td>
                                 <td>{student.address}</td>
                                 <td>{student.phone}</td>
@@ -169,7 +169,7 @@ function Student() {
                                     </button>
                                     <button
                                         className="btn btn-sm btn-outline-danger"
-                                        onClick={() => deleteStudent(student._id)}
+                                        onClick={() => deleteStudent(student.id)}
                                     >
                                         🗑️ Delete
                                     </button>
