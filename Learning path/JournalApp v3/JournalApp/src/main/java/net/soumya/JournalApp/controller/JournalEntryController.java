@@ -69,7 +69,7 @@ public class JournalEntryController {
     }
 
     // delete by id
-    @DeleteMapping("/id/{username}/{id}")
+    @DeleteMapping("/username&id/{username}/{id}")
     public ResponseEntity<?> deleteEntryById(@PathVariable ObjectId id, @PathVariable String username) {
         try {
             if (usersServices.getByUserName(username).isPresent()) {
@@ -86,18 +86,20 @@ public class JournalEntryController {
     }
 
     // update by id
-    @PutMapping("/id/{username}/{id}")
+    @PutMapping("/username&id/{username}/{id}")
     public ResponseEntity<?> updateEntryById(
             @PathVariable ObjectId id,
             @PathVariable String username,
-            @RequestBody JournalEntry newEntry
-    ) {
+            @RequestBody JournalEntry newEntry) {
         try {
             if (usersServices.getByUserName(username).isPresent()) {
                 JournalEntry entry = journalEntryServices.getById(id).orElse(null);
                 if (entry != null) {
                     entry.setTitle(!newEntry.getTitle().isEmpty() ? newEntry.getTitle() : entry.getTitle());
-                    entry.setContent(newEntry.getContent() != null && !newEntry.getContent().isEmpty() ? newEntry.getContent() : entry.getContent());
+                    entry.setContent(
+                            newEntry.getContent() != null && !newEntry.getContent().isEmpty() ? newEntry.getContent()
+                                    : entry.getContent());
+
                     journalEntryServices.saveEntry(entry);
                     return new ResponseEntity<>(newEntry, HttpStatus.OK);
                 } else {
