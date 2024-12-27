@@ -4,9 +4,20 @@ export default function TextForm(props) {
     const [text, setText] = useState();
 
     const handelUpperCase = () => {
-        if (text && text.trim() !== "") setText(text.toUpperCase());
-        else alert("Text box is empty. Please fill out the text box.");
+        if (text && text.trim() !== "") {
+            setText(text.toUpperCase())
+        } else {
+            alert("Text box is empty. Please fill out the text box.")
+        }
     };
+
+    const heandelLowerCase = () => {
+        if (text && text.trim() !== "") {
+            setText(text.toLowerCase())
+        } else {
+            alert("Text box is empty. Please fill out the text box.")
+        }
+    }
 
     const handelOnchange = (event) => {
         setText(event.target.value);
@@ -25,6 +36,7 @@ export default function TextForm(props) {
                 </div>
                 <div className='pb-4 pl-5' >
                     <button type="button" className="btn btn-primary" onClick={ handelUpperCase }>Convert to upper case</button>
+                    <button type="button" class="btn btn-success ml-2" onClick={ heandelLowerCase }>Convert to lower case</button>
                     <button type="button" className="btn btn-danger ml-2" onClick={ clearText }>Clear</button>
                 </div>
             </div>
