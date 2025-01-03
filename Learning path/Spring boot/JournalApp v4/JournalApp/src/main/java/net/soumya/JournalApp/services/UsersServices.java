@@ -30,8 +30,8 @@ public class UsersServices {
     }
 
     // find by username
-    public Optional<Users> getByUserName(String userName) {
-        return Optional.ofNullable(userRepo.findByUsername(userName));
+    public Users getByUserName(String userName) {
+        return userRepo.findByUsername(userName);
     }
 
     // delete method

@@ -34,7 +34,7 @@ public class UserEntryController {
     // get user by username
     @GetMapping("/username/{userName}")
     public ResponseEntity<?> getByUserName(@PathVariable String userName) {
-        Users user = usersServices.getByUserName(userName).orElse(null);
+        Users user = usersServices.getByUserName(userName);
         try {
             if (user != null) {
                 return new ResponseEntity<>(user, HttpStatus.OK);
@@ -59,10 +59,10 @@ public class UserEntryController {
     // update user
     @PutMapping("/username/{userName}")
     public ResponseEntity<?> updateUser(@PathVariable String userName, @RequestBody Users user) {
-        Users userInDB = usersServices.getByUserName(userName).orElse(null);
+        Users userInDB = usersServices.getByUserName(userName);
 
         try {
-            if (usersServices.getByUserName(userName).isPresent()) {
+            if (usersServices.getByUserName(userName) != null) {
                 if (userInDB != null) {
                     userInDB.setUsername(user.getUsername());
                     userInDB.setPassword(user.getPassword());

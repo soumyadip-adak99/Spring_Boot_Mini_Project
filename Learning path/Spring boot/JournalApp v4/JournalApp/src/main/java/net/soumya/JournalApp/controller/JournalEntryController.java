@@ -25,7 +25,7 @@ public class JournalEntryController {
     // get data by username
     @GetMapping("/username/{username}")
     public ResponseEntity<?> getAllJournalEntriesOfUser(@PathVariable String username) {
-        Users user = usersServices.getByUserName(username).orElse(null);
+        Users user = usersServices.getByUserName(username);
         try {
             if (user != null) {
                 List<JournalEntry> journalEntries = user.getJournalEntries();
@@ -45,7 +45,7 @@ public class JournalEntryController {
     @PostMapping("/username/{username}")
     public ResponseEntity<?> createEntry(@PathVariable String username, @RequestBody JournalEntry journalEntry) {
         try {
-            if (usersServices.getByUserName(username).isPresent()) {
+            if (usersServices.getByUserName(username) != null) {
                 journalEntryServices.saveEntry(journalEntry, username);
                 return new ResponseEntity<>(journalEntry, HttpStatus.CREATED);
             }
@@ -72,7 +72,7 @@ public class JournalEntryController {
     @DeleteMapping("/username&id/{username}/{id}")
     public ResponseEntity<?> deleteEntryById(@PathVariable ObjectId id, @PathVariable String username) {
         try {
-            if (usersServices.getByUserName(username).isPresent()) {
+            if (usersServices.getByUserName(username) != null) {
                 JournalEntry entry = journalEntryServices.getById(id).orElse(null);
                 if (entry != null) {
                     journalEntryServices.deleteById(id, username);
@@ -93,7 +93,7 @@ public class JournalEntryController {
             @RequestBody JournalEntry newEntry
     ) {
         try {
-            if (usersServices.getByUserName(username).isPresent()) {
+            if (usersServices.getByUserName(username) != null) {
                 JournalEntry entry = journalEntryServices.getById(id).orElse(null);
                 if (entry != null) {
                     entry.setTitle(!newEntry.getTitle().isEmpty() ? newEntry.getTitle() : entry.getTitle());

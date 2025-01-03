@@ -6,6 +6,7 @@ import net.soumya.JournalApp.repository.JournalRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,11 +22,13 @@ public class JournalEntryService {
     private UsersServices usersServices;
 
     // save
+    @Transactional
     public void saveEntry(JournalEntry entry, String username) {
-        Users user = usersServices.getByUserName(username).orElse(null);
+        Users user = usersServices.getByUserName(username);
         entry.setDate(LocalDateTime.now());
-        assert user != null;
-        user.getJournalEntries().add(journalRepository.save(entry));
+        JournalEntry entries = journalRepository.save(entry);
+        user.getJournalEntries().add(entries);
+//        user.setUsername(null);
         usersServices.addUser(user);
     }
 
@@ -46,11 +49,9 @@ public class JournalEntryService {
 
     // delete method
     public void deleteById(ObjectId id, String username) {
-        Users user = usersServices.getByUserName(username).orElse(null);
-        assert user != null;
+        Users user = usersServices.getByUserName(username);
         user.getJournalEntries().removeIf(x -> x.getId().equals(id));
         usersServices.addUser(user);
         journalRepository.deleteById(id);
-
     }
 }

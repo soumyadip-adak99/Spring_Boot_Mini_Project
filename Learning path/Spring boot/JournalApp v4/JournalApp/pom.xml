@@ -47,18 +47,10 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
             <version>5.2.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>3.4.1</version>
         </dependency>
         <!--		lombok connection-->
         <dependency>
@@ -67,6 +59,12 @@
             <version>1.18.36</version>
             <scope>provided</scope>
         </dependency>
+
+<!--        spring security-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
