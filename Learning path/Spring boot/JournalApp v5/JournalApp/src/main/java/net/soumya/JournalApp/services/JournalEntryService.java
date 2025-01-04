@@ -24,12 +24,11 @@ public class JournalEntryService {
     // save
     @Transactional
     public void saveEntry(JournalEntry entry, String username) {
-        Users user = usersServices.getByUserName(username);
+        Users user = usersServices.findByUserName(username);
         entry.setDate(LocalDateTime.now());
         JournalEntry entries = journalRepository.save(entry);
         user.getJournalEntries().add(entries);
-        // user.setUsername(null);
-        usersServices.saveEntry(user);
+        usersServices.saveUser(user);
     }
 
     // this overloaded method use for update journal entries
@@ -48,10 +47,23 @@ public class JournalEntryService {
     }
 
     // delete method
+    @Transactional
     public void deleteById(ObjectId id, String username) {
-        Users user = usersServices.getByUserName(username);
-        user.getJournalEntries().removeIf(x -> x.getId().equals(id));
-        usersServices.saveEntry(user);
-        journalRepository.deleteById(id);
+        try {
+            Users user = usersServices.findByUserName(username);
+            boolean removed = user.getJournalEntries().removeIf(x -> x.getId().equals(id));
+            if (removed) {
+                usersServices.saveUser(user);
+                journalRepository.deleteById(id);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
+    // find by user name
+//    public List<JournalEntry> findByUserName(String username) {
+//
+//    }
 }

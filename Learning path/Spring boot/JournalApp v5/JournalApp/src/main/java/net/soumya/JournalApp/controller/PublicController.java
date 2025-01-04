@@ -18,7 +18,7 @@ public class PublicController {
     @PostMapping("/createuser")
     public ResponseEntity<?> createUser(@RequestBody Users user) {
         try {
-            usersServices.saveEntry(user);
+            usersServices.saveNewUser(user);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

@@ -36,7 +36,7 @@ public class UserEntryController {
     // get user by username
     @GetMapping("/username/{userName}")
     public ResponseEntity<?> getByUserName(@PathVariable String userName) {
-        Users user = usersServices.getByUserName(userName);
+        Users user = usersServices.findByUserName(userName);
         try {
             if (user != null) {
                 return new ResponseEntity<>(user, HttpStatus.OK);
@@ -47,22 +47,25 @@ public class UserEntryController {
         }
     }
 
-
     // update user
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody Users updatedUser) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUsername = authentication.getName();
 
-        Users userInDB = usersServices.getByUserName(currentUsername);
-        if (userInDB != null) {
-            userInDB.setUsername(updatedUser.getUsername());
-            if (!updatedUser.getPassword().isEmpty()) {
-                userInDB.setPassword(usersServices.passwordEncoder.encode(updatedUser.getPassword()));
+        Users userInDB = usersServices.findByUserName(currentUsername);
+        try {
+            if (userInDB != null) {
+                userInDB.setUsername(updatedUser.getUsername());
+                if (!updatedUser.getPassword().isEmpty()) {
+                    userInDB.setPassword(usersServices.passwordEncoder.encode(updatedUser.getPassword()));
+                }
+                usersServices.updateUser(userInDB);
+                return new ResponseEntity<>(HttpStatus.OK);
             }
-            usersServices.updateUser(userInDB);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

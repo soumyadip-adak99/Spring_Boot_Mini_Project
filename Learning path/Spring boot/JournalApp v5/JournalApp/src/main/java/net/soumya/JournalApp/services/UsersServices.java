@@ -12,18 +12,19 @@ import java.util.List;
 public class UsersServices {
 
     @Autowired
-    private  UserRepo userRepo;
+    private UserRepo userRepo;
     @Autowired
-    public  PasswordEncoder passwordEncoder;
+    public PasswordEncoder passwordEncoder;
 
-//    public UsersServices(UserRepo userRepo, PasswordEncoder passwordEncoder) {
-//        this.userRepo = userRepo;
-//        this.passwordEncoder = passwordEncoder;
-//    }
-
-    public void saveEntry(Users user) {
+    //save new user
+    public void saveNewUser(Users user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(List.of("ROLE_USER"));
+        userRepo.save(user);
+    }
+
+    //save user
+    public void saveUser(Users user) {
         userRepo.save(user);
     }
 
@@ -31,7 +32,7 @@ public class UsersServices {
         return userRepo.findAll();
     }
 
-    public Users getByUserName(String userName) {
+    public Users findByUserName(String userName) {
         return userRepo.findByUsername(userName);
     }
 
