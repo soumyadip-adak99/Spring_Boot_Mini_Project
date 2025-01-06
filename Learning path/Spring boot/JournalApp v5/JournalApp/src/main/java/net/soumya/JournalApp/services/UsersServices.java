@@ -16,7 +16,14 @@ public class UsersServices {
     @Autowired
     public PasswordEncoder passwordEncoder;
 
-    //save new user
+    // Save a new admin user
+    public void saveNewAdmin(Users user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(List.of("ROLE_ADMIN"));
+        userRepo.save(user);
+    }
+
+    // Save a new user
     public void saveNewUser(Users user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(List.of("ROLE_USER"));

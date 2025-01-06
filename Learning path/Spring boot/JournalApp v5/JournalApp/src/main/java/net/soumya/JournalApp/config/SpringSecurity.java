@@ -1,5 +1,6 @@
 package net.soumya.JournalApp.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,6 +38,7 @@ public class SpringSecurity {
                 .authorizeHttpRequests(auth -> auth
                         // Restrict access to "/journal/**" and "/users/**" to authenticated users only.
                         .requestMatchers("/journal/**", "/users/**").authenticated()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
 
                         // Allow access to all other endpoints without authentication.
                         .anyRequest().permitAll()
@@ -74,3 +76,4 @@ public class SpringSecurity {
         return authenticationConfiguration.getAuthenticationManager();
     }
 }
+
