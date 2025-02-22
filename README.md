@@ -67,6 +67,24 @@ Then, import Axios in your React components (JSX files):
 import axios from "axios";
 ```
 
+To create Spring boot application in jar:
+
+```bash
+.\mvnw clean package -D spring.profiles.active=prod/dev
+```
+
+To run jar file:
+
+Windows
+```bash
+java -jar .\JournalApp-0.0.1-SNAPSHOT.jar spring.profiles.active=prod/dev
+```
+
+Linux
+```bash
+java -jar "./JournalApp-0.0.1-SNAPSHOT.jar" --spring.profiles.active=prod/dev
+```
+
 ## 🔗 Links
 
 - [React Documentation](https://reactjs.org/)
