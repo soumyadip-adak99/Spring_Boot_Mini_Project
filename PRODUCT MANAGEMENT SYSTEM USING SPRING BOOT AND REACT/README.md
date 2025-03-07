@@ -1,6 +1,3 @@
-Here's a **professional GitHub README.md** file for your **Product Management System** project. It includes a project overview, setup instructions, technologies used, and other essential details.
-
----
 
 ## **📦 Product Management System**
 
