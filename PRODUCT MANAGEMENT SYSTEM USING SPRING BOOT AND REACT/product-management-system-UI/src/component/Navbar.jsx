@@ -1,12 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import './css/style.css'
 
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-success">
             <div className="container-fluid">
                 <NavLink to="/" className="navbar-brand">
-                    <b>Product Management System</b>
+                    <b className="main-heading">Product Management System</b>
                 </NavLink>
                 <button
                     className="navbar-toggler"

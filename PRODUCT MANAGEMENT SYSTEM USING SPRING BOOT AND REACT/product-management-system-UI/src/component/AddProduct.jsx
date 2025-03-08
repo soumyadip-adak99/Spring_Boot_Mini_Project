@@ -48,6 +48,15 @@ const AddProduct = () => {
             });
     };
 
+    const clearAllBox = () => {
+        setProduct({
+            productName: "",
+            productDescription: "",
+            price: "",
+            status: "Available"
+        });
+    };
+
     return (
         <div className='container'>
             <div className='row'>
@@ -118,6 +127,7 @@ const AddProduct = () => {
                                 </div>
 
                                 <button type='submit' className='btn btn-primary col-md-12'>Submit</button>
+                                <button onClick={clearAllBox} className='btn btn-danger col-md-12 mt-2'>Clear</button>
                             </form>
                         </div>
                     </div>

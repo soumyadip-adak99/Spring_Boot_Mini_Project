@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductService from '../service/ProductService';
+import './css/style.css'
 
 const Home = () => {
     const [productList, setProductList] = useState([]);
@@ -40,7 +41,7 @@ const Home = () => {
                 <div className="col-md-12">
                     <div className="card">
                         <div className="card-header fs-3 text-center">
-                            <h2>All Product List</h2>
+                            <h3 className='table-heading'>All Product Details</h3>
                         </div>
                         <div className="card-body">
                             {message ? (

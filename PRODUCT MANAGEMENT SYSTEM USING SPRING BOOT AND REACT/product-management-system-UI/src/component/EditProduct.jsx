@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProductService from '../service/ProductService';
+import './css/style.css'
 
 const EditProduct = () => {
     const { id } = useParams();
@@ -38,7 +39,7 @@ const EditProduct = () => {
                 <div className="col-md-6">
                     <div className="card shadow-lg">
                         <div className="card-header bg-primary text-white text-center">
-                            <h3>Edit Product</h3>
+                            <h3 className='table-heading'>Edit Product</h3>
                         </div>
                         <div className="card-body">
                             <form onSubmit={updateProduct}>
