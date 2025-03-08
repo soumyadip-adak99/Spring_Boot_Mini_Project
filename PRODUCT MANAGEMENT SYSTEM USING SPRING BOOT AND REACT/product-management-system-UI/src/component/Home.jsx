@@ -65,7 +65,7 @@ const Home = () => {
                                                     <td>{index + 1}</td>
                                                     <td>{product.productName}</td>
                                                     <td>{product.productDescription}</td>
-                                                    <td>{product.price}</td>
+                                                    <td><span>&#8377; </span>{product.price}</td>
                                                     <td>{product.status}</td>
                                                     <td>
                                                         <Link to={`/edit-product/${product.id}`} className='btn btn-sm btn-primary me-2'>Edit</Link>
@@ -85,7 +85,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
