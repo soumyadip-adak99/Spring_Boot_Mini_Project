@@ -4,6 +4,6 @@ spring:
 
   data:
     mongodb:
-      uri: XXXXXXXXXXXXXXXXXXXXX
+      uri: mongodb+srv://XXXTENTACION:XXXXXXXXXX@cluster0.wfyv6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
       database: product_data
       auto-index-creation: true
