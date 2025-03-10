@@ -68,5 +68,6 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>product-management-system</finalName>
     </build>
 </project>
